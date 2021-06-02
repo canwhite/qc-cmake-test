@@ -11,13 +11,17 @@ project(Demo3)
 #查找当前目录下的所有源文件，并将名称保存到DIR_SRCS变量
 aux_source_directory(. DIR_SRCS)
 
-#添加math子目录
+#添加math子目录，并执行子目录中的CMakeLists.txt
+#注意子目录中生成静态文件的方法是add_library(名字 路径)
 add_subdirectory(math)
 
-#指定生成目标
+#PS：SET命令可以显式的定义变量
+#SET(CMAKE_INSTALL_PREFIX /usr/local)  
+
+#指定生成目标（名称，文件）
 add_executable(Demo main.cc)
 
-#添加链接库
+#添加链接库，再math中生成了MathFunction，这里建立了链接
 target_link_libraries(Demo MathFunctions)
 
 
